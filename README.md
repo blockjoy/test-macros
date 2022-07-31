@@ -87,3 +87,29 @@ fn some_test() {
     // … your stuff goes here …
 }
 ```
+
+
+## Use with other macros
+
+
+In the integration test it came up, the order of macros sometimes matters:
+
+
+```rust
+#[before(call = "before_fn")]
+#[after(call = "after_fn")]
+#[tokio::test]
+async fn some_async_test() {
+    // works well
+}
+```
+
+
+```rust
+#[tokio::test]
+#[before(call = "before_fn")]
+#[after(call = "after_fn")]
+async fn some_async_test() {
+    // marks macro 'after' as unreachable
+}
+```
