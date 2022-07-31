@@ -1,0 +1,16 @@
+[package]
+name = "test_macros"
+version = "0.1.0"
+edition = "2021"
+authors = ["tstaetter <thomas@blockjoy.com>"]
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1.0"
+quote = "1"
+syn = { version = "1.0", features = ["full", "derive", "extra-traits"] }
+
+[dev-dependencies]
+tokio = { version = "1.2.0", default-features = false, features = ["rt-multi-thread", "macros"] }
